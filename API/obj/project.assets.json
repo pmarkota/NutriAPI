@@ -1885,6 +1885,23 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
+      "Scrutor/5.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1",
+          "Microsoft.Extensions.DependencyModel": "8.0.1"
+        },
+        "compile": {
+          "lib/net8.0/Scrutor.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Scrutor.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "type": "package",
         "dependencies": {
@@ -6034,6 +6051,27 @@
         "nuget.versioning.nuspec"
       ]
     },
+    "Scrutor/5.0.1": {
+      "sha512": "lODLSduex32544jZZom2bN73mg4DfyGCNdywismPv2D2Hslv4jaq1Y+apV24xTW65tDMXskZHwVFSg2xIs3jtQ==",
+      "type": "package",
+      "path": "scrutor/5.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/Scrutor.dll",
+        "lib/net462/Scrutor.pdb",
+        "lib/net462/Scrutor.xml",
+        "lib/net8.0/Scrutor.dll",
+        "lib/net8.0/Scrutor.pdb",
+        "lib/net8.0/Scrutor.xml",
+        "lib/netstandard2.0/Scrutor.dll",
+        "lib/netstandard2.0/Scrutor.pdb",
+        "lib/netstandard2.0/Scrutor.xml",
+        "scrutor.5.0.1.nupkg.sha512",
+        "scrutor.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.6.2": {
       "sha512": "+NB4UYVYN6AhDSjW0IJAd1AGD8V33gemFNLPaxKTtPkHB+HaKAKf9MGAEUPivEWvqeQfcKIw8lJaHq6LHljRuw==",
       "type": "package",
@@ -6969,6 +7007,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.10",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.6",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.10",
+      "Scrutor >= 5.0.1",
       "Swashbuckle.AspNetCore >= 6.6.2",
       "System.IdentityModel.Tokens.Jwt >= 8.1.2"
     ]
@@ -6980,11 +7019,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\API\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\Pero\\Desktop\\pmarkota\\PROD_PROJECTS\\Nutri\\Back\\code\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\API\\API\\API.csproj",
+      "projectPath": "C:\\Users\\Pero\\Desktop\\pmarkota\\PROD_PROJECTS\\Nutri\\Back\\code\\API\\API.csproj",
       "packagesPath": "C:\\Users\\Pero\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\API\\API\\obj\\",
+      "outputPath": "C:\\Users\\Pero\\Desktop\\pmarkota\\PROD_PROJECTS\\Nutri\\Back\\code\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7046,6 +7085,10 @@
             "target": "Package",
             "version": "[8.0.10, )"
           },
+          "Scrutor": {
+            "target": "Package",
+            "version": "[5.0.1, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.6.2, )"
@@ -7066,16 +7109,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.10, 8.0.10]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.10, 8.0.10]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7084,7 +7117,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\Pero\\.dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

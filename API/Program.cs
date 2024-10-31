@@ -1,4 +1,6 @@
-using API.Models;
+using API.BLL.Services;
+using API.DAL.Models;
+using API.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,18 @@ builder.Services.AddEndpointsApiExplorer();
 // Register your DbContext using the connection string from appsettings.json
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.Scan(scan => scan
+    .FromAssemblyOf<IRepository>()
+    .AddClasses(classes => classes.AssignableTo<IRepository>())
+    .AsImplementedInterfaces()
+    .WithScopedLifetime());
+
+builder.Services.Scan(scan => scan
+    .FromAssemblyOf<IService>()
+    .AddClasses(classes => classes.AssignableTo<IService>())
+    .AsImplementedInterfaces()
+    .WithScopedLifetime());
 
 builder.Services.AddSwaggerGen();
 

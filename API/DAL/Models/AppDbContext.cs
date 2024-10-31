@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Models;
+namespace API.DAL.Models;
 
 public partial class AppDbContext : DbContext
 {
