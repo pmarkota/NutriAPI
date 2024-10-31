@@ -24,8 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BLL\Services\Abstraction\" />
-    <Folder Include="BLL\Services\Implementation\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
