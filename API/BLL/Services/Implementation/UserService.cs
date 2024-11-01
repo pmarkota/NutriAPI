@@ -1,11 +1,12 @@
-﻿using System.Configuration;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using API.BLL.Services.Abstraction;
 using API.DAL.Models;
 using API.DAL.Repositories.Abstraction;
 using API.Requests.Users;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace API.BLL.Services.Implementation;
@@ -13,25 +14,24 @@ namespace API.BLL.Services.Implementation;
 public class UserService : IUserService, IService
 {
     private readonly IUserRepository _userRepository;
+    private readonly IConfiguration _configuration;
 
-    public UserService(IUserRepository userRepository)
+    public UserService(IUserRepository userRepository, IConfiguration configuration)
     {
         _userRepository = userRepository;
+        _configuration = configuration;
     }
 
     public async Task<IEnumerable<User>> GetAllUsersAsync() => await _userRepository.GetUsersAsync();
 
-
     public async Task<User> GetUserByIdAsync(Guid id) => await _userRepository.GetUserByIdAsync(id);
-
 
     public async Task<string> RegisterUserAsync(UserRegisterRequest request)
     {
         var existingUser = await _userRepository.GetUserByUsernameOrEmailAsync(request.Username, request.Email);
         if (existingUser != null) throw new Exception("Username or email already exists.");
 
-        using var hmac = new System.Security.Cryptography.HMACSHA512();
-        var passwordHash = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password)));
+        var passwordHash = HashPassword(request.Password);
 
         var newUser = new User
         {
@@ -48,14 +48,47 @@ public class UserService : IUserService, IService
         await _userRepository.AddUserAsync(newUser);
         await _userRepository.SaveChangesAsync();
 
-        // Generate JWT
-        var claims = new[] { new Claim(JwtRegisteredClaimNames.Sub, newUser.Id.ToString()) };
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-            "fcecb0e3e04ffe3a94cbbe4453c4c7679a3028d931843da12fde1257760a6020f56450b6f4deb18ad149a61f7a22d10e68afdae763efcade033b344a984ee907+6zUjv7hK7IoCp5i3C6tTg3aFf1mE="));
+        return GenerateJwtToken(newUser.Id);
+    }
+
+    public async Task<string> LoginUserAsync(UserLoginRequest request)
+    {
+        var user = await _userRepository.GetUserByUsernameOrEmailAsync(request.Username, request.Email);
+        if (user == null || !VerifyPasswordHash(request.Password, user.PasswordHash))
+        {
+            throw new Exception("Invalid username/email or password.");
+        }
+
+        user.LastLogin = DateTime.UtcNow;
+        await _userRepository.SaveChangesAsync();
+
+        return GenerateJwtToken(user.Id);
+    }
+    public async Task<IActionResult> UpdateUserAsync(UserProfileUpdateRequest request)
+    {
+        // Call the repository method to update the user
+        return await _userRepository.UpdateUserAsync(request);
+    }
+    private string HashPassword(string password)
+    {
+        return BCrypt.Net.BCrypt.HashPassword(password);
+    }
+
+    private bool VerifyPasswordHash(string requestPassword, string userPasswordHash)
+    {
+        return BCrypt.Net.BCrypt.Verify(requestPassword, userPasswordHash);
+    }
+
+    private string GenerateJwtToken(Guid userId)
+    {
+        var claims = new[] { new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()) };
+        
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
         var token = new JwtSecurityToken(
-            issuer: "mysite.com",
-            audience: "mysite.com",
+            issuer: _configuration["JwtSettings:Issuer"],
+            audience: _configuration["JwtSettings:Audience"],
             claims: claims,
             expires: DateTime.UtcNow.AddDays(1),
             signingCredentials: creds);

@@ -55,5 +55,34 @@ namespace API.Controllers
                 return Conflict(ex.Message);
             }
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> Login([FromBody] UserLoginRequest request)
+        {
+            try
+            {
+                var token = await _userService.LoginUserAsync(request);
+                return Ok(token);
+            }
+            catch (Exception e)
+            {
+                return Conflict(e.Message);
+            }
+        }
+
+        [HttpPut("update")]
+        public async Task<ActionResult> UpdateUser([FromBody] UserProfileUpdateRequest request)
+        {
+            try
+            {
+                var result = await _userService.UpdateUserAsync(request);
+                return Ok(result); // Return the result directly
+            }
+            catch (Exception e)
+            {
+                return Conflict(e.Message); // Handle exceptions appropriately
+            }
+        }
+
     }
 }

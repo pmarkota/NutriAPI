@@ -10,5 +10,6 @@ public interface IUserRepository
     Task<User> GetUserByIdAsync(Guid userId);
     Task<User> GetUserByUsernameOrEmailAsync(string username,string email);
     Task AddUserAsync(User user);
+    Task<IActionResult> UpdateUserAsync(UserProfileUpdateRequest request);
     Task SaveChangesAsync();
 }

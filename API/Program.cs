@@ -1,4 +1,5 @@
 using API.BLL.Services;
+using API.DAL;
 using API.DAL.Models;
 using API.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 // Register your DbContext using the connection string from appsettings.json
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
 builder.Services.Scan(scan => scan
     .FromAssemblyOf<IRepository>()
