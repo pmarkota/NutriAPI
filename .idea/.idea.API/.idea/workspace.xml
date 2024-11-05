@@ -9,25 +9,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="572abe75-5193-4554-9216-30e78815ebd2" name="Changes" comment="Add login and update user endpoints&#10;&#10;Introduced endpoints for user login and profile update in UsersController. Enhanced UserService with methods for login and updating user profile, integrating JWT and hashing functionalities. Updated related DI and config settings.">
-      <change afterPath="$PROJECT_DIR$/API/Requests/Users/UserDietaryPreferences.cs" afterDir="false" />
+    <list default="true" id="572abe75-5193-4554-9216-30e78815ebd2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipePostRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipePutRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipesGet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Implementation/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/UsersController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IUserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/API.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/API.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/API.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/ref/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/ref/API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/refint/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/refint/API.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,12 +47,12 @@
     &quot;assignee&quot;: &quot;pmarkota&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/pmarkota/NutriAPI.git",
-    "accountId": "44ae8b83-380e-4b7c-818c-0f45fe01cc99"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/pmarkota/NutriAPI.git&quot;,
+    &quot;accountId&quot;: &quot;44ae8b83-380e-4b7c-818c-0f45fe01cc99&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9fc45acb8dd787f63c351275caf64d0e279ce2bcc2e143a21216bf1dd60fac5/NotFound.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DAL/Class1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -157,7 +158,7 @@
       <workItem from="1730387339761" duration="514000" />
       <workItem from="1730387876577" duration="6466000" />
       <workItem from="1730454669799" duration="3754000" />
-      <workItem from="1730742240082" duration="7932000" />
+      <workItem from="1730742240082" duration="12007000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor project structure and update dependencies&#10;&#10;Refactored the project structure by moving models and creating separate repositories and services. Implemented new user repository and added Scrutor for dependency injection scanning. Updated several configuration files and project paths for improved organization and maintainability.">
       <option name="closed" value="true" />
@@ -183,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730457810114</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update user endpoints and add dietary preferences feature&#10;&#10;Refactor update endpoint to improve response codes and add NotFound handling. Implement a new endpoint to fetch user dietary preferences. Adjust repository and service layers accordingly and update project paths.">
+      <option name="closed" value="true" />
+      <created>1730813275481</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730813275481</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +205,8 @@
     <MESSAGE value="Refactor project structure and update dependencies&#10;&#10;Refactored the project structure by moving models and creating separate repositories and services. Implemented new user repository and added Scrutor for dependency injection scanning. Updated several configuration files and project paths for improved organization and maintainability." />
     <MESSAGE value="Refactor UsersController to use IUserService&#10;&#10;Refactored the UsersController to utilize IUserService for user-related operations instead of directly accessing the database context. This includes async methods for fetching users and registering new users, improving code modularity and separation of concerns. Created IUserService and its implementation to handle user business logic." />
     <MESSAGE value="Add login and update user endpoints&#10;&#10;Introduced endpoints for user login and profile update in UsersController. Enhanced UserService with methods for login and updating user profile, integrating JWT and hashing functionalities. Updated related DI and config settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add login and update user endpoints&#10;&#10;Introduced endpoints for user login and profile update in UsersController. Enhanced UserService with methods for login and updating user profile, integrating JWT and hashing functionalities. Updated related DI and config settings." />
+    <MESSAGE value="Update user endpoints and add dietary preferences feature&#10;&#10;Refactor update endpoint to improve response codes and add NotFound handling. Implement a new endpoint to fetch user dietary preferences. Adjust repository and service layers accordingly and update project paths." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update user endpoints and add dietary preferences feature&#10;&#10;Refactor update endpoint to improve response codes and add NotFound handling. Implement a new endpoint to fetch user dietary preferences. Adjust repository and service layers accordingly and update project paths." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
