@@ -10,14 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="572abe75-5193-4554-9216-30e78815ebd2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipePostRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipePutRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipesGet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" afterDir="false" />
@@ -26,6 +20,7 @@
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/ref/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/ref/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/refint/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/refint/API.dll" afterDir="false" />
@@ -71,27 +66,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.API: IIS Express.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pero&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AIAssistantPromptsLibrary&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.API: IIS Express.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Pero",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.API: IIS Express">
     <configuration name="API: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/API/API.csproj" />
@@ -159,6 +154,9 @@
       <workItem from="1730387876577" duration="6466000" />
       <workItem from="1730454669799" duration="3754000" />
       <workItem from="1730742240082" duration="12007000" />
+      <workItem from="1730818437563" duration="1713000" />
+      <workItem from="1730820359393" duration="1256000" />
+      <workItem from="1730824317996" duration="21000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor project structure and update dependencies&#10;&#10;Refactored the project structure by moving models and creating separate repositories and services. Implemented new user repository and added Scrutor for dependency injection scanning. Updated several configuration files and project paths for improved organization and maintainability.">
       <option name="closed" value="true" />
@@ -192,7 +190,31 @@
       <option name="project" value="LOCAL" />
       <updated>1730813275481</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add Recipe repository and service implementation&#10;&#10;Implemented the RecipeRepository and RecipeService classes to manage CRUD operations for recipes. Created related request and response DTOs to handle data transfer. Updated project files accordingly.">
+      <option name="closed" value="true" />
+      <created>1730818680080</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730818680080</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add RecipesController with CRUD operations&#10;&#10;Introduced a new RecipesController to manage recipe entities via RESTful API endpoints. This includes methods to create, read, update, and delete recipes, leveraging a recipe service for business logic. Each endpoint is properly routed and returns appropriate HTTP responses.">
+      <option name="closed" value="true" />
+      <created>1730819473881</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730819473881</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add SourceLink configuration for API project&#10;&#10;This commit introduces the SourceLink configuration file, enabling source code debugging for the API project. Additionally, it includes the Scrutor.dll assembly to aid dependency injection features.">
+      <option name="closed" value="true" />
+      <created>1730819484094</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730819484095</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +228,29 @@
     <MESSAGE value="Refactor UsersController to use IUserService&#10;&#10;Refactored the UsersController to utilize IUserService for user-related operations instead of directly accessing the database context. This includes async methods for fetching users and registering new users, improving code modularity and separation of concerns. Created IUserService and its implementation to handle user business logic." />
     <MESSAGE value="Add login and update user endpoints&#10;&#10;Introduced endpoints for user login and profile update in UsersController. Enhanced UserService with methods for login and updating user profile, integrating JWT and hashing functionalities. Updated related DI and config settings." />
     <MESSAGE value="Update user endpoints and add dietary preferences feature&#10;&#10;Refactor update endpoint to improve response codes and add NotFound handling. Implement a new endpoint to fetch user dietary preferences. Adjust repository and service layers accordingly and update project paths." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update user endpoints and add dietary preferences feature&#10;&#10;Refactor update endpoint to improve response codes and add NotFound handling. Implement a new endpoint to fetch user dietary preferences. Adjust repository and service layers accordingly and update project paths." />
+    <MESSAGE value="Add Recipe repository and service implementation&#10;&#10;Implemented the RecipeRepository and RecipeService classes to manage CRUD operations for recipes. Created related request and response DTOs to handle data transfer. Updated project files accordingly." />
+    <MESSAGE value="Add RecipesController with CRUD operations&#10;&#10;Introduced a new RecipesController to manage recipe entities via RESTful API endpoints. This includes methods to create, read, update, and delete recipes, leveraging a recipe service for business logic. Each endpoint is properly routed and returns appropriate HTTP responses." />
+    <MESSAGE value="Add SourceLink configuration for API project&#10;&#10;This commit introduces the SourceLink configuration file, enabling source code debugging for the API project. Additionally, it includes the Scrutor.dll assembly to aid dependency injection features." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SourceLink configuration for API project&#10;&#10;This commit introduces the SourceLink configuration file, enabling source code debugging for the API project. Additionally, it includes the Scrutor.dll assembly to aid dependency injection features." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs</url>
+          <line>58</line>
+          <properties documentPath="C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\DAL\Repositories\Implementation\RecipeRepository.cs" containingFunctionPresentation="Method 'AddRecipeAsync'">
+            <startOffsets>
+              <option value="1830" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1831" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

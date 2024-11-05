@@ -34,8 +34,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateRecipe(RecipePostRequest recipe)
         {
-            await _recipeService.AddRecipeAsync(recipe);
-            return CreatedAtAction(nameof(GetRecipeById), new { id = recipe.Id }, recipe);
+            
         }
 
         [HttpPut("{id}")]

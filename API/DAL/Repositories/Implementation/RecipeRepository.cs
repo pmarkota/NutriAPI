@@ -59,7 +59,6 @@ public class RecipeRepository : IRecipeRepository, IRepository
     {
         var newRecipe = new Recipe
         {
-            Id = recipe.Id,
             Name = recipe.Name,
             Description = recipe.Description,
             Ingredients = recipe.Ingredients,
@@ -70,7 +69,6 @@ public class RecipeRepository : IRecipeRepository, IRepository
             Fats = recipe.Fats,
             DietaryLabels = recipe.DietaryLabels,
             CreatedBy = recipe.CreatedBy,
-            CreatedAt = DateTime.Now
         };
 
         _db.Recipes.Add(newRecipe);
