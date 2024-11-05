@@ -70,19 +70,27 @@ namespace API.Controllers
             }
         }
 
-        [HttpPut("update")]
-        public async Task<ActionResult> UpdateUser([FromBody] UserProfileUpdateRequest request)
+        [HttpPut("update-profile")]
+        public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfileUpdateRequest request)
         {
-            try
+            var success = await _userService.UpdateUserAsync(request);
+
+            if (success)
             {
-                var result = await _userService.UpdateUserAsync(request);
-                return Ok(result); // Return the result directly
+                return NoContent(); // HTTP 204 for a successful update without a body
             }
-            catch (Exception e)
-            {
-                return Conflict(e.Message); // Handle exceptions appropriately
-            }
+    
+            return NotFound("User not found");
         }
+
+
+        [HttpGet("dietary-preferences")]
+        public async Task<ActionResult> GetUserDietaryPreferences(Guid userId)
+        {
+            var dietaryPreferences = await _userService.GetUserDietaryPreferencesAsync(userId);
+            return Ok(dietaryPreferences);
+        }
+
 
     }
 }

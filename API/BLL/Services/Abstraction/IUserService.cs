@@ -10,6 +10,7 @@ public interface IUserService
     Task<User?> GetUserByIdAsync(Guid userId);
     Task<string> RegisterUserAsync(UserRegisterRequest request);    
     Task<string> LoginUserAsync(UserLoginRequest request);
-    Task<IActionResult> UpdateUserAsync(UserProfileUpdateRequest request);
+    Task<bool> UpdateUserAsync(UserProfileUpdateRequest request);
+    Task<UserDietaryPreferences> GetUserDietaryPreferencesAsync(Guid userId);
 
 }

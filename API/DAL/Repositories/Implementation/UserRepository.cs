@@ -31,26 +31,38 @@ public class UserRepository : IUserRepository,IRepository
         await _db.Users.FirstOrDefaultAsync(u => u.Username == username || u.Email == email);
 
     public async Task AddUserAsync(User user) => await _db.Users.AddAsync(user);
-    public async Task<IActionResult> UpdateUserAsync(UserProfileUpdateRequest request)
+    public async Task<bool> UpdateUserAsync(UserProfileUpdateRequest request)
     {
         var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == request.Id);
-    
         if (user == null)
         {
-            return new NotFoundResult(); // User not found
+            return false; // Return false if user not found
         }
 
-        // Update properties
         user.DietaryPreference = request.DietaryPreference;
         user.Goal = request.Goal;
-        user.CaloricGoal = request.CaloricGoal; 
+        user.CaloricGoal = request.CaloricGoal;
 
-        // Save changes to the database
         await _db.SaveChangesAsync();
-
-        return new NoContentResult(); // Return 204 No Content
+        return true; // Return true if update was successful
     }
 
 
+
     public async Task SaveChangesAsync() => await _db.SaveChangesAsync();
+    public async Task<UserDietaryPreferences?> GetUserDietaryPreferencesAsync(Guid userId)
+    {
+        var user = await _db.Users
+            .Where(u => u.Id == userId)
+            .Select(u => new UserDietaryPreferences
+            {
+                DietaryPreference = u.DietaryPreference,
+                Goal = u.Goal,
+                CaloricGoal = u.CaloricGoal
+            })
+            .FirstOrDefaultAsync();
+
+        return user;
+    }
+
 }

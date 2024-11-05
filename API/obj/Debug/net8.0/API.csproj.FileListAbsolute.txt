@@ -488,3 +488,5 @@ C:\Users\Pero\Desktop\pmarkota\PROD_PROJECTS\Nutri\Back\code\API\obj\Debug\net8.
 C:\Users\Pero\Desktop\pmarkota\PROD_PROJECTS\Nutri\Back\code\API\obj\Debug\net8.0\API.pdb
 C:\Users\Pero\Desktop\pmarkota\PROD_PROJECTS\Nutri\Back\code\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\Pero\Desktop\pmarkota\PROD_PROJECTS\Nutri\Back\code\API\obj\Debug\net8.0\ref\API.dll
+C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\bin\Debug\net8.0\Scrutor.dll
+C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\obj\Debug\net8.0\API.sourcelink.json

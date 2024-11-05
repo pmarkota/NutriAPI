@@ -64,11 +64,19 @@ public class UserService : IUserService, IService
 
         return GenerateJwtToken(user.Id);
     }
-    public async Task<IActionResult> UpdateUserAsync(UserProfileUpdateRequest request)
+
+    public async Task<bool> UpdateUserAsync(UserProfileUpdateRequest request)
     {
-        // Call the repository method to update the user
         return await _userRepository.UpdateUserAsync(request);
     }
+
+
+    public async Task<UserDietaryPreferences?> GetUserDietaryPreferencesAsync(Guid userId)
+    {
+        return await _userRepository.GetUserDietaryPreferencesAsync(userId);
+    }
+
+
     private string HashPassword(string password)
     {
         return BCrypt.Net.BCrypt.HashPassword(password);
@@ -82,7 +90,7 @@ public class UserService : IUserService, IService
     private string GenerateJwtToken(Guid userId)
     {
         var claims = new[] { new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()) };
-        
+
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
