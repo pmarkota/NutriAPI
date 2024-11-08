@@ -1,4 +1,4 @@
-﻿using API.BLL.Services.Abstraction;
+using API.BLL.Services.Abstraction;
 using API.DAL.Models;
 using API.DAL.Repositories.Abstraction;
 using API.Requests.Recipes;
@@ -24,9 +24,12 @@ public class RecipeService : IRecipeService, IService
         return await _recipeRepository.GetRecipeByIdAsync(recipeId);
     }
 
-    public async Task AddRecipeAsync(RecipePostRequest recipe)
+    public async Task<RecipesGet> AddRecipeAsync(RecipePostRequest recipe)
     {
-        await _recipeRepository.AddRecipeAsync(recipe);
+        if (String.IsNullOrEmpty(recipe.Name))
+            throw new ArgumentException("Recipe name is required");
+
+        return await _recipeRepository.AddRecipeAsync(recipe);
     }
 
     public async Task<bool> UpdateRecipeAsync(RecipePutRequest recipe)
@@ -37,5 +40,22 @@ public class RecipeService : IRecipeService, IService
     public async Task<bool> DeleteRecipeAsync(Guid recipeId)
     {
         return await _recipeRepository.DeleteRecipeAsync(recipeId);
+    }
+
+    public async Task<IEnumerable<RecipesGet>> GetFilteredRecipesAsync(RecipeFilterRequest filter)
+    {
+        if (filter.MaxCalories.HasValue && filter.MaxCalories < 0)
+            throw new ArgumentException("MaxCalories cannot be negative");
+
+        if (filter.MinProtein.HasValue && filter.MinProtein < 0)
+            throw new ArgumentException("MinProtein cannot be negative");
+
+        if (filter.MaxCarbohydrates.HasValue && filter.MaxCarbohydrates < 0)
+            throw new ArgumentException("MaxCarbohydrates cannot be negative");
+
+        if (filter.MaxFats.HasValue && filter.MaxFats < 0)
+            throw new ArgumentException("MaxFats cannot be negative");
+
+        return await _recipeRepository.GetFilteredRecipesAsync(filter);
     }
 }

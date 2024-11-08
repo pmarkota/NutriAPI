@@ -6,7 +6,8 @@ public interface IRecipeService
 {
     Task<IEnumerable<RecipesGet>> GetAllRecipesAsync();
     Task<RecipesGet?> GetRecipeByIdAsync(Guid recipeId);
-    Task AddRecipeAsync(RecipePostRequest recipe);
+    Task<RecipesGet> AddRecipeAsync(RecipePostRequest recipe);
     Task<bool> UpdateRecipeAsync(RecipePutRequest recipe);
     Task<bool> DeleteRecipeAsync(Guid recipeId);
+    Task<IEnumerable<RecipesGet>> GetFilteredRecipesAsync(RecipeFilterRequest filter);
 }

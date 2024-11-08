@@ -1,10 +1,12 @@
-﻿namespace API.Requests.Recipes;
+using System.Text.Json;
+
+namespace API.Requests.Recipes;
 
 public class RecipePostRequest
 {
-    public string? Name { get; set; }
+    public string Name { get; set; }
     public string? Description { get; set; }
-    public string? Ingredients { get; set; }
+    public List<string>? Ingredients { get; set; }
     public string? Instructions { get; set; }
     public long? Calories { get; set; }
     public long? Protein { get; set; }

@@ -11,7 +11,16 @@
   <component name="ChangeListManager">
     <list default="true" id="572abe75-5193-4554-9216-30e78815ebd2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Controllers/RecipesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/RecipesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Models/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Models/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Requests/Recipes/RecipePostRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipePostRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Requests/Recipes/RecipePutRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipePutRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Requests/Recipes/RecipesGet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipesGet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" afterDir="false" />
@@ -49,8 +58,10 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9fc45acb8dd787f63c351275caf64d0e279ce2bcc2e143a21216bf1dd60fac5/NotFound.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DAL/Class1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/294078ecfce6fdb942ecfee089f09717de7a6fcfe5efd9fdb6f4f93c0fb4813/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fb367341658aaedd7de424d4c9189db33c4387e268dcc4011918569442ab12/AsyncTaskMethodBuilderT.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -156,7 +167,9 @@
       <workItem from="1730742240082" duration="12007000" />
       <workItem from="1730818437563" duration="1713000" />
       <workItem from="1730820359393" duration="1256000" />
-      <workItem from="1730824317996" duration="21000" />
+      <workItem from="1730824317996" duration="581000" />
+      <workItem from="1730894116323" duration="1117000" />
+      <workItem from="1731011241870" duration="8732000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor project structure and update dependencies&#10;&#10;Refactored the project structure by moving models and creating separate repositories and services. Implemented new user repository and added Scrutor for dependency injection scanning. Updated several configuration files and project paths for improved organization and maintainability.">
       <option name="closed" value="true" />
@@ -214,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730819484095</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Remove ID assignment and add recipe creation timestamp&#10;&#10;Removed the ID property from RecipePostRequest and ID assignment in the RecipeRepository to ensure IDs are auto-generated. Also removed creation timestamp assignment to maintain consistency with entity handling throughout the application.">
+      <option name="closed" value="true" />
+      <created>1730824889423</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730824889423</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,23 +252,24 @@
     <MESSAGE value="Add Recipe repository and service implementation&#10;&#10;Implemented the RecipeRepository and RecipeService classes to manage CRUD operations for recipes. Created related request and response DTOs to handle data transfer. Updated project files accordingly." />
     <MESSAGE value="Add RecipesController with CRUD operations&#10;&#10;Introduced a new RecipesController to manage recipe entities via RESTful API endpoints. This includes methods to create, read, update, and delete recipes, leveraging a recipe service for business logic. Each endpoint is properly routed and returns appropriate HTTP responses." />
     <MESSAGE value="Add SourceLink configuration for API project&#10;&#10;This commit introduces the SourceLink configuration file, enabling source code debugging for the API project. Additionally, it includes the Scrutor.dll assembly to aid dependency injection features." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add SourceLink configuration for API project&#10;&#10;This commit introduces the SourceLink configuration file, enabling source code debugging for the API project. Additionally, it includes the Scrutor.dll assembly to aid dependency injection features." />
+    <MESSAGE value="Remove ID assignment and add recipe creation timestamp&#10;&#10;Removed the ID property from RecipePostRequest and ID assignment in the RecipeRepository to ensure IDs are auto-generated. Also removed creation timestamp assignment to maintain consistency with entity handling throughout the application." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove ID assignment and add recipe creation timestamp&#10;&#10;Removed the ID property from RecipePostRequest and ID assignment in the RecipeRepository to ensure IDs are auto-generated. Also removed creation timestamp assignment to maintain consistency with entity handling throughout the application." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs</url>
-          <line>58</line>
-          <properties documentPath="C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\DAL\Repositories\Implementation\RecipeRepository.cs" containingFunctionPresentation="Method 'AddRecipeAsync'">
+          <url>file://$PROJECT_DIR$/API/BLL/Services/Implementation/MealPlanGeneratorService.cs</url>
+          <line>28</line>
+          <properties documentPath="C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\BLL\Services\Implementation\MealPlanGeneratorService.cs" containingFunctionPresentation="Method 'GenerateMealPlanAsync'">
             <startOffsets>
-              <option value="1830" />
+              <option value="942" />
             </startOffsets>
             <endOffsets>
-              <option value="1831" />
+              <option value="943" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

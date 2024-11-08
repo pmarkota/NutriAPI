@@ -11,21 +11,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // Register your DbContext using the connection string from appsettings.json
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<API.DAL.Models.AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
-builder.Services.Scan(scan => scan
-    .FromAssemblyOf<IRepository>()
-    .AddClasses(classes => classes.AssignableTo<IRepository>())
-    .AsImplementedInterfaces()
-    .WithScopedLifetime());
+builder.Services.Scan(scan =>
+    scan.FromAssemblyOf<IRepository>()
+        .AddClasses(classes => classes.AssignableTo<IRepository>())
+        .AsImplementedInterfaces()
+        .WithScopedLifetime()
+);
 
-builder.Services.Scan(scan => scan
-    .FromAssemblyOf<IService>()
-    .AddClasses(classes => classes.AssignableTo<IService>())
-    .AsImplementedInterfaces()
-    .WithScopedLifetime());
+builder.Services.Scan(scan =>
+    scan.FromAssemblyOf<IService>()
+        .AddClasses(classes => classes.AssignableTo<IService>())
+        .AsImplementedInterfaces()
+        .WithScopedLifetime()
+);
 
 builder.Services.AddSwaggerGen();
 
