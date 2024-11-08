@@ -27,10 +27,46 @@ public class MealPlanGeneratorService : IMealPlanGeneratorService, IService
 
     public async Task<MealPlanResponse> GenerateMealPlanAsync(MealPlanGenerateRequest request)
     {
-        // Validate duration
-        if (request.DurationInDays <= 0)
+        // Validate request
+        if (request == null)
+            throw new ArgumentNullException(nameof(request));
+
+        if (request.UserId == Guid.Empty)
+            throw new ArgumentException("Invalid user ID");
+
+        // Validate duration with reasonable limits
+        if (request.DurationInDays <= 0 || request.DurationInDays > 30) // Limiting to 30 days as a reasonable maximum
         {
-            throw new ArgumentException("Duration must be greater than 0 days");
+            throw new ArgumentException("Duration must be between 1 and 30 days");
+        }
+
+        // Validate specific inputs when provided
+        if (request.SpecificCaloricGoal.HasValue)
+        {
+            if (request.SpecificCaloricGoal < 500 || request.SpecificCaloricGoal > 10000) // Reasonable caloric range
+                throw new ArgumentException("Caloric goal must be between 500 and 10000 calories");
+        }
+
+        if (!string.IsNullOrEmpty(request.SpecificDietaryPreference))
+        {
+            // Validate against known dietary preferences
+            var validDietaryPreferences = new[]
+            {
+                "Vegetarian",
+                "Vegan",
+                "Pescatarian",
+                "Keto",
+                "Paleo",
+            }; // Add your valid options
+            if (
+                !validDietaryPreferences.Contains(
+                    request.SpecificDietaryPreference,
+                    StringComparer.OrdinalIgnoreCase
+                )
+            )
+                throw new ArgumentException(
+                    $"Invalid dietary preference: {request.SpecificDietaryPreference}"
+                );
         }
 
         // Get user preferences if needed
@@ -198,6 +234,19 @@ public class MealPlanGeneratorService : IMealPlanGeneratorService, IService
         int attempt = 0
     )
     {
+        // Validate inputs
+        if (recipes == null || !recipes.Any())
+            throw new ArgumentException("Recipe list cannot be null or empty");
+
+        if (targetCalories <= 0)
+            throw new ArgumentException("Target calories must be greater than 0");
+
+        if (excludeRecipeIds == null)
+            throw new ArgumentException("Exclude recipe IDs list cannot be null");
+
+        if (attempt < 0 || attempt > MaxRetries)
+            throw new ArgumentException($"Attempt must be between 0 and {MaxRetries}");
+
         // First check if we have any recipes at all after excluding used ones
         var availableRecipes = recipes.Where(r => !excludeRecipeIds.Contains(r.Id)).ToList();
         if (!availableRecipes.Any())

@@ -26,7 +26,8 @@ public partial class ShoppingList
     public virtual MealPlan? MealPlan { get; set; }
 
     [InverseProperty("ShoppingList")]
-    public virtual ICollection<ShoppingListItem> ShoppingListItems { get; set; } = new List<ShoppingListItem>();
+    public virtual ICollection<ShoppingListItem> ShoppingListItems { get; set; } =
+        new List<ShoppingListItem>();
 
     [ForeignKey("UserId")]
     [InverseProperty("ShoppingLists")]

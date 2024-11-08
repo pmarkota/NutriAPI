@@ -126,4 +126,9 @@ public class MealPlanRepository : IMealPlanRepository, IRepository
         }
         return startDate;
     }
+
+    public async Task<MealPlan?> GetOriginalMealPlanAsync(Guid mealPlanId)
+    {
+        return await _db.MealPlans.FirstOrDefaultAsync(mp => mp.Id == mealPlanId);
+    }
 }

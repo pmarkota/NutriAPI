@@ -11,16 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="572abe75-5193-4554-9216-30e78815ebd2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Controllers/RecipesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/RecipesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Models/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Models/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Models/ShoppingList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Models/ShoppingList.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IMealPlanRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IMealPlanRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/MealPlanRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/MealPlanRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Requests/Recipes/RecipePostRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipePostRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Requests/Recipes/RecipePutRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipePutRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Requests/Recipes/RecipesGet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipesGet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" afterDir="false" />

@@ -157,11 +157,10 @@ public class RecipeRepository : IRecipeRepository, IRepository
 
         if (!string.IsNullOrEmpty(filter.DietaryPreference))
         {
-            var normalizedPreference = filter.DietaryPreference.ToLower().Replace(" ", "");
+            var normalizedPreference = filter.DietaryPreference.ToLower().Trim();
 
             query = query.Where(r =>
-                r.DietaryLabels != null
-                && r.DietaryLabels.ToLower().Replace(" ", "").Contains(normalizedPreference)
+                r.DietaryLabels != null && r.DietaryLabels.ToLower().Contains(normalizedPreference)
             );
         }
 
