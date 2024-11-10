@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -39,6 +39,12 @@ public partial class User
     [Column("created_at")]
     public DateTime CreatedAt { get; set; }
 
+    [Column("google_id")]
+    public string? GoogleId { get; set; }
+
+    [Column("picture")]
+    public string? Picture { get; set; }
+
     [InverseProperty("User")]
     public virtual ICollection<MealPlan> MealPlans { get; set; } = new List<MealPlan>();
 
@@ -57,3 +63,17 @@ public partial class User
     [InverseProperty("User")]
     public virtual UserPreference? UserPreference { get; set; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
