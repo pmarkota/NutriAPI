@@ -87,11 +87,8 @@ public class AuthController : ControllerBase
         try
         {
             var userExists = await _userService.CheckUserExistsByEmailAsync(request.Email);
-            if (userExists)
-            {
-                return Ok(new { exists = true });
-            }
-            return NotFound(new { exists = false });
+            // Always return Ok (200) with the exists flag
+            return Ok(new { exists = userExists });
         }
         catch (Exception ex)
         {
