@@ -741,3 +741,8 @@ C:\Users\Pero\Desktop\pmarkota\PROD_PROJECTS\Nutri\Back\code\NutriAPI\API\bin\De
 C:\Users\Pero\Desktop\pmarkota\PROD_PROJECTS\Nutri\Back\code\NutriAPI\API\bin\Debug\net8.0\Google.Apis.Core.dll
 C:\Users\Pero\Desktop\pmarkota\PROD_PROJECTS\Nutri\Back\code\NutriAPI\API\bin\Debug\net8.0\System.Management.dll
 C:\Users\Pero\Desktop\pmarkota\PROD_PROJECTS\Nutri\Back\code\NutriAPI\API\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll
+C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\bin\Debug\net8.0\Google.Apis.dll
+C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\bin\Debug\net8.0\Google.Apis.Auth.dll
+C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\bin\Debug\net8.0\Google.Apis.Core.dll
+C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\bin\Debug\net8.0\System.Management.dll
+C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll

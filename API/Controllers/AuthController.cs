@@ -41,47 +41,75 @@ public class AuthController : ControllerBase
 
 
     [HttpPost("google")]
-
     public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginRequest request)
-
     {
-
         try
-    {
-        // First, get user info from Google using the access token
-        using var httpClient = new HttpClient();
-        httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", request.AccessToken);
+        {
+            // First, get user info from Google using the access token
+            using var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", request.AccessToken);
         
-        var userInfoResponse = await httpClient.GetAsync("https://www.googleapis.com/oauth2/v3/userinfo");
-        if (!userInfoResponse.IsSuccessStatusCode)
-        {
-            return BadRequest(new { message = "Failed to get user info from Google" });
+            var userInfoResponse = await httpClient.GetAsync("https://www.googleapis.com/oauth2/v3/userinfo");
+            if (!userInfoResponse.IsSuccessStatusCode)
+            {
+                return BadRequest(new { message = "Failed to get user info from Google" });
+            }
+
+            var googleUserJson = await userInfoResponse.Content.ReadAsStringAsync();
+            var googleUser = System.Text.Json.JsonSerializer.Deserialize<GoogleUserInfo>(googleUserJson);
+
+            if (googleUser == null)
+            {
+                return BadRequest(new { message = "Invalid user info from Google" });
+            }
+
+            var userInfo = new GoogleUserInfo
+            {
+                AccessToken = request.AccessToken,
+                Email = googleUser.Email,
+                GoogleId = googleUser.GoogleId,  // This will be the sub claim from Google
+                Name = googleUser.Name,
+                Picture = googleUser.Picture,
+                Password = request.Password  // Add this line to pass the password
+            };
+
+            var token = await _userService.HandleGoogleLoginAsync(userInfo);
+            return Ok(new { token });
         }
-
-        var googleUserJson = await userInfoResponse.Content.ReadAsStringAsync();
-        var googleUser = System.Text.Json.JsonSerializer.Deserialize<GoogleUserInfo>(googleUserJson);
-
-        if (googleUser == null)
+        catch (Exception ex)
         {
-            return BadRequest(new { message = "Invalid user info from Google" });
+            return BadRequest(new { message = "Invalid Google token", error = ex.Message });
         }
-
-        var userInfo = new GoogleUserInfo
-        {
-            Email = googleUser.Email,
-            GoogleId = googleUser.GoogleId, // This will be the sub claim from Google
-            Name = googleUser.Name,
-            Picture = googleUser.Picture
-        };
-
-        var token = await _userService.HandleGoogleLoginAsync(userInfo);
-        return Ok(new { token });
     }
-    catch (Exception ex)
+    [HttpPost("google/check-email")]
+    public async Task<IActionResult> CheckGoogleEmail([FromBody] CheckEmailRequest request)
     {
-        return BadRequest(new { message = "Invalid Google token", error = ex.Message });
+        try
+        {
+            var userExists = await _userService.CheckUserExistsByEmailAsync(request.Email);
+            if (userExists)
+            {
+                return Ok(new { exists = true });
+            }
+            return NotFound(new { exists = false });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = "Error checking email", error = ex.Message });
+        }
     }
 
+    [HttpPost("google/login")]
+    public async Task<IActionResult> GoogleLoginExisting([FromBody] GoogleLoginExistingRequest request)
+    {
+        try
+        {
+            var token = await _userService.HandleExistingGoogleLoginAsync(request);
+            return Ok(new { token });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = "Login failed", error = ex.Message });
+        }
     }
-
 } 

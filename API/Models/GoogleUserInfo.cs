@@ -4,6 +4,9 @@ namespace API.DAL.Models;
 
 public class GoogleUserInfo
 {
+    [JsonPropertyName("accessToken")]
+    public string AccessToken { get; set; }
+
     [JsonPropertyName("email")]
     public string Email { get; set; }
 
@@ -15,4 +18,7 @@ public class GoogleUserInfo
 
     [JsonPropertyName("picture")]
     public string Picture { get; set; }
-} 
+
+    [JsonPropertyName("password")]
+    public string Password { get; set; }
+}
