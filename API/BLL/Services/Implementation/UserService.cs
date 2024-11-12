@@ -88,6 +88,19 @@ public class UserService : IUserService, IService
 
     public async Task<bool> UpdateUserAsync(UserProfileUpdateRequest request)
     {
+        // If username is being changed, check if new username is available
+        if (!string.IsNullOrEmpty(request.Username))
+        {
+            var existingUser = await _userRepository.GetUserByUsernameOrEmailAsync(
+                request.Username,
+                null
+            );
+            if (existingUser != null && existingUser.Id != request.UserId)
+            {
+                throw new Exception("Username already taken");
+            }
+        }
+
         return await _userRepository.UpdateUserAsync(request);
     }
 
