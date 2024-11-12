@@ -4,6 +4,7 @@ using System.Text;
 using API.BLL.Services.Abstraction;
 using API.DAL.Models;
 using API.Requests.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.HttpSys;
@@ -30,17 +31,16 @@ namespace API.Controllers
             return Ok(users);
         }
 
-
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(Guid id)
         {
             var user = await _userService.GetUserByIdAsync(id);
-            if (user == null) return NotFound();
+            if (user == null)
+                return NotFound();
             return Ok(user);
         }
 
-
-// ...
+        // ...
 
         [HttpPost("register")]
         public async Task<ActionResult<string>> Register([FromBody] UserRegisterRequest request)
@@ -54,6 +54,18 @@ namespace API.Controllers
             {
                 return Conflict(ex.Message);
             }
+        }
+
+        [HttpPost("profile")]
+        public async Task<IActionResult> GetProfile([FromBody] Guid userId)
+        {
+            var userProfile = await _userService.GetUserProfileAsync(userId);
+            if (userProfile == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(userProfile);
         }
 
         [HttpPost("login")]
@@ -71,7 +83,9 @@ namespace API.Controllers
         }
 
         [HttpPut("update-profile")]
-        public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfileUpdateRequest request)
+        public async Task<IActionResult> UpdateUserProfile(
+            [FromBody] UserProfileUpdateRequest request
+        )
         {
             var success = await _userService.UpdateUserAsync(request);
 
@@ -79,10 +93,9 @@ namespace API.Controllers
             {
                 return NoContent(); // HTTP 204 for a successful update without a body
             }
-    
+
             return NotFound("User not found");
         }
-
 
         [HttpGet("dietary-preferences")]
         public async Task<ActionResult> GetUserDietaryPreferences(Guid userId)
@@ -90,7 +103,5 @@ namespace API.Controllers
             var dietaryPreferences = await _userService.GetUserDietaryPreferencesAsync(userId);
             return Ok(dietaryPreferences);
         }
-
-
     }
 }

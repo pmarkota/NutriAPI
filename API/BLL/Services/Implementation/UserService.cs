@@ -263,4 +263,22 @@ public class UserService : IUserService, IService
 
         return GenerateJwtToken(user.Id);
     }
+
+    public async Task<UserProfileResponse?> GetUserProfileAsync(Guid userId)
+    {
+        var user = await _userRepository.GetUserByIdAsync(userId);
+        if (user == null)
+        {
+            return null;
+        }
+
+        return new UserProfileResponse
+        {
+            Username = user.Username,
+            Email = user.Email,
+            Goal = user.Goal,
+            DietaryPreference = user.DietaryPreference,
+            CaloricGoal = user.CaloricGoal,
+        };
+    }
 }
