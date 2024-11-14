@@ -14,4 +14,9 @@ public class RecipesGet
     public string? DietaryLabels { get; set; }
     public Guid? CreatedBy { get; set; }
     public DateTime CreatedAt { get; set; }
+    public string? Category { get; set; }
+    public string? Difficulty { get; set; }
+    public int? PrepTime { get; set; }
+    public int? CookingTime { get; set; }
+    public int? TotalTime { get; set; }
 }

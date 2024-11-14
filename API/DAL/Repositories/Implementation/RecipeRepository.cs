@@ -54,6 +54,11 @@ public class RecipeRepository : IRecipeRepository, IRepository
                 DietaryLabels = r.DietaryLabels,
                 CreatedBy = r.CreatedBy,
                 CreatedAt = r.CreatedAt,
+                Category = r.Category,
+                Difficulty = r.Difficulty,
+                PrepTime = r.PrepTime,
+                CookingTime = r.CookingTime,
+                TotalTime = r.TotalTime
             })
             .FirstOrDefaultAsync();
     }
@@ -222,6 +227,11 @@ public class RecipeRepository : IRecipeRepository, IRepository
                 DietaryLabels = r.DietaryLabels,
                 CreatedBy = r.CreatedBy,
                 CreatedAt = r.CreatedAt,
+                Category = r.Category,
+                Difficulty = r.Difficulty,
+                PrepTime = r.PrepTime,
+                CookingTime = r.CookingTime,
+                TotalTime = r.TotalTime
             })
             .ToListAsync();
 

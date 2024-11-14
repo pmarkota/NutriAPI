@@ -44,6 +44,22 @@ public partial class Recipe
 
     [Column("created_at")]
     public DateTime CreatedAt { get; set; }
+    
+    [Column("category")]
+    public string? Category { get; set; }
+
+    [Column("difficulty")]
+    public string? Difficulty { get; set; }
+
+    [Column("prep_time")]
+    public int? PrepTime { get; set; }
+
+    [Column("cooking_time")]
+    public int? CookingTime { get; set; }
+
+    [Column("total_time")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    public int? TotalTime { get; set; }
 
     [ForeignKey("CreatedBy")]
     [InverseProperty("Recipes")]
