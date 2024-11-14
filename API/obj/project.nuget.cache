@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vjp0CK5kVYo=",
+  "dgSpecHash": "vsIxPadb3dQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\API\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\NutriAPI\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pero\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Pero\\.nuget\\packages\\google.apis\\1.67.0\\google.apis.1.67.0.nupkg.sha512",

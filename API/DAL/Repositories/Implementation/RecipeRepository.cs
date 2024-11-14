@@ -155,33 +155,56 @@ public class RecipeRepository : IRecipeRepository, IRepository
     {
         var query = _db.Recipes.AsQueryable();
 
+        System.Diagnostics.Debug.WriteLine($"Initial query count: {await query.CountAsync()}");
+
         if (!string.IsNullOrEmpty(filter.DietaryPreference))
         {
             var normalizedPreference = filter.DietaryPreference.ToLower().Trim();
 
-            query = query.Where(r =>
-                r.DietaryLabels != null && r.DietaryLabels.ToLower().Contains(normalizedPreference)
+            if (normalizedPreference != "all" && normalizedPreference != "any")
+            {
+                query = query.Where(r =>
+                    r.DietaryLabels != null
+                    && EF.Functions.ILike(r.DietaryLabels.ToLower(), $"%{normalizedPreference}%")
+                );
+            }
+            System.Diagnostics.Debug.WriteLine(
+                $"After dietary filter count: {await query.CountAsync()}"
             );
         }
 
         if (filter.MaxCalories.HasValue)
         {
-            query = query.Where(r => r.Calories <= filter.MaxCalories);
+            query = query.Where(r => r.Calories.HasValue && r.Calories <= filter.MaxCalories);
+            System.Diagnostics.Debug.WriteLine(
+                $"After calories filter count: {await query.CountAsync()}"
+            );
         }
 
         if (filter.MinProtein.HasValue)
         {
-            query = query.Where(r => r.Protein >= filter.MinProtein);
+            query = query.Where(r => r.Protein.HasValue && r.Protein >= filter.MinProtein);
+            System.Diagnostics.Debug.WriteLine(
+                $"After protein filter count: {await query.CountAsync()}"
+            );
         }
 
         if (filter.MaxCarbohydrates.HasValue)
         {
-            query = query.Where(r => r.Carbohydrates <= filter.MaxCarbohydrates);
+            query = query.Where(r =>
+                r.Carbohydrates.HasValue && r.Carbohydrates <= filter.MaxCarbohydrates
+            );
+            System.Diagnostics.Debug.WriteLine(
+                $"After carbs filter count: {await query.CountAsync()}"
+            );
         }
 
         if (filter.MaxFats.HasValue)
         {
-            query = query.Where(r => r.Fats <= filter.MaxFats);
+            query = query.Where(r => r.Fats.HasValue && r.Fats <= filter.MaxFats);
+            System.Diagnostics.Debug.WriteLine(
+                $"After fats filter count: {await query.CountAsync()}"
+            );
         }
 
         var results = await query
@@ -202,26 +225,39 @@ public class RecipeRepository : IRecipeRepository, IRepository
             })
             .ToListAsync();
 
+        // Debug logging for all recipes if no results found
         if (!results.Any())
         {
             var allRecipes = await _db
                 .Recipes.Select(r => new
                 {
                     r.Id,
+                    r.Name,
                     r.DietaryLabels,
                     r.Calories,
+                    r.Protein,
+                    r.Carbohydrates,
+                    r.Fats,
                 })
                 .ToListAsync();
 
-            System.Diagnostics.Debug.WriteLine(
-                $"Filter DietaryPreference: {filter.DietaryPreference}"
-            );
-            System.Diagnostics.Debug.WriteLine($"Filter MaxCalories: {filter.MaxCalories}");
-            System.Diagnostics.Debug.WriteLine("Available recipes:");
+            System.Diagnostics.Debug.WriteLine("\n=== Filter Criteria ===");
+            System.Diagnostics.Debug.WriteLine($"DietaryPreference: {filter.DietaryPreference}");
+            System.Diagnostics.Debug.WriteLine($"MaxCalories: {filter.MaxCalories}");
+            System.Diagnostics.Debug.WriteLine($"MinProtein: {filter.MinProtein}");
+            System.Diagnostics.Debug.WriteLine($"MaxCarbohydrates: {filter.MaxCarbohydrates}");
+            System.Diagnostics.Debug.WriteLine($"MaxFats: {filter.MaxFats}");
+
+            System.Diagnostics.Debug.WriteLine("\n=== Available Recipes ===");
             foreach (var recipe in allRecipes)
             {
                 System.Diagnostics.Debug.WriteLine(
-                    $"Recipe {recipe.Id}: Labels={recipe.DietaryLabels}, Calories={recipe.Calories}"
+                    $"Recipe: {recipe.Name} (ID: {recipe.Id})\n"
+                        + $"Labels: {recipe.DietaryLabels}\n"
+                        + $"Calories: {recipe.Calories}, "
+                        + $"Protein: {recipe.Protein}, "
+                        + $"Carbs: {recipe.Carbohydrates}, "
+                        + $"Fats: {recipe.Fats}\n"
                 );
             }
         }
