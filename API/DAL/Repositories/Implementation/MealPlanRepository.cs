@@ -131,4 +131,23 @@ public class MealPlanRepository : IMealPlanRepository, IRepository
     {
         return await _db.MealPlans.FirstOrDefaultAsync(mp => mp.Id == mealPlanId);
     }
+
+    public async Task<MealPlanResponse?> GetCurrentMealPlanAsync(Guid userId)
+    {
+        var currentDate = DateOnly.FromDateTime(DateTime.UtcNow);
+
+        var currentMealPlan = await _db
+            .MealPlans.Include(mp => mp.MealPlanRecipes)
+            .ThenInclude(mpr => mpr.Recipe)
+            .Where(mp =>
+                mp.UserId == userId && mp.StartDate <= currentDate && mp.EndDate >= currentDate
+            )
+            .OrderByDescending(mp => mp.CreatedAt)
+            .FirstOrDefaultAsync();
+
+        if (currentMealPlan == null)
+            return null;
+
+        return await CreateMealPlanResponseAsync(currentMealPlan);
+    }
 }

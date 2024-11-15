@@ -11,14 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="572abe75-5193-4554-9216-30e78815ebd2" name="Changes" comment="recipes changes">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Controllers/RecipesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/RecipesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Models/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Models/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Models/Recipe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Models/Recipe.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IMealPlanGeneratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IMealPlanGeneratorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Implementation/MealPlanGeneratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/MealPlanGeneratorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Controllers/MealPlansController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/MealPlansController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IMealPlanRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IMealPlanRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/MealPlanRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/MealPlanRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" afterDir="false" />
@@ -171,7 +168,7 @@
       <workItem from="1731011241870" duration="8732000" />
       <workItem from="1731168890229" duration="5929000" />
       <workItem from="1731420875915" duration="3598000" />
-      <workItem from="1731587947873" duration="11098000" />
+      <workItem from="1731587947873" duration="14838000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor project structure and update dependencies&#10;&#10;Refactored the project structure by moving models and creating separate repositories and services. Implemented new user repository and added Scrutor for dependency injection scanning. Updated several configuration files and project paths for improved organization and maintainability.">
       <option name="closed" value="true" />
@@ -279,19 +276,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/API/BLL/Services/Implementation/MealPlanGeneratorService.cs</url>
-          <line>28</line>
-          <properties documentPath="C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\BLL\Services\Implementation\MealPlanGeneratorService.cs" containingFunctionPresentation="Method 'GenerateMealPlanAsync'">
-            <startOffsets>
-              <option value="942" />
-            </startOffsets>
-            <endOffsets>
-              <option value="943" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/API/BLL/Services/Implementation/UserService.cs</url>
           <line>179</line>
           <properties documentPath="C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\API\API\BLL\Services\Implementation\UserService.cs" containingFunctionPresentation="Method 'HandleGoogleLoginAsync'">
@@ -316,6 +300,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/API/Controllers/MealPlansController.cs</url>
+          <line>62</line>
+          <properties documentPath="C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\NutriAPI\API\Controllers\MealPlansController.cs" containingFunctionPresentation="Method 'GetCurrentMealPlan'">
+            <startOffsets>
+              <option value="1850" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1851" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

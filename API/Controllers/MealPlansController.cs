@@ -57,4 +57,21 @@ public class MealPlansController : ControllerBase
         var mealPlans = await _mealPlanGeneratorService.GetUserMealPlansAsync(userId);
         return Ok(mealPlans);
     }
+
+    [HttpGet("{userId}/current")]
+    public async Task<ActionResult<MealPlanResponse>> GetCurrentMealPlan(Guid userId)
+    {
+        try
+        {
+            var mealPlan = await _mealPlanGeneratorService.GetCurrentMealPlanAsync(userId);
+            if (mealPlan == null)
+                return NotFound("No active meal plan found for the user");
+
+            return Ok(mealPlan);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to get current meal plan: {ex.Message}");
+        }
+    }
 }

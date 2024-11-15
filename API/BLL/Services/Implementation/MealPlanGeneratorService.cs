@@ -35,38 +35,9 @@ public class MealPlanGeneratorService : IMealPlanGeneratorService, IService
             throw new ArgumentException("Invalid user ID");
 
         // Validate duration with reasonable limits
-        if (request.DurationInDays <= 0 || request.DurationInDays > 30) // Limiting to 30 days as a reasonable maximum
+        if (request.DurationInDays <= 0 || request.DurationInDays > 30)
         {
             throw new ArgumentException("Duration must be between 1 and 30 days");
-        }
-
-        // Validate specific inputs when provided
-        if (request.SpecificCaloricGoal.HasValue)
-        {
-            if (request.SpecificCaloricGoal < 500 || request.SpecificCaloricGoal > 10000) // Reasonable caloric range
-                throw new ArgumentException("Caloric goal must be between 500 and 10000 calories");
-        }
-
-        if (!string.IsNullOrEmpty(request.SpecificDietaryPreference))
-        {
-            // Validate against known dietary preferences
-            var validDietaryPreferences = new[]
-            {
-                "Vegetarian",
-                "Vegan",
-                "Pescatarian",
-                "Keto",
-                "Paleo",
-            }; // Add your valid options
-            if (
-                !validDietaryPreferences.Contains(
-                    request.SpecificDietaryPreference,
-                    StringComparer.OrdinalIgnoreCase
-                )
-            )
-                throw new ArgumentException(
-                    $"Invalid dietary preference: {request.SpecificDietaryPreference}"
-                );
         }
 
         // Get user preferences if needed
@@ -78,9 +49,14 @@ public class MealPlanGeneratorService : IMealPlanGeneratorService, IService
                 throw new ArgumentException("User preferences not found");
         }
 
-        // Use specified preferences or fall back to user preferences
-        var dietaryPreference =
-            request.SpecificDietaryPreference ?? userPreferences?.DietaryPreference;
+        // Determine the dietary preference to use
+        var dietaryPreference = !string.IsNullOrEmpty(request.SpecificDietaryPreference)
+            ? request.SpecificDietaryPreference
+            : userPreferences?.DietaryPreference;
+
+        if (string.IsNullOrEmpty(dietaryPreference))
+            throw new ArgumentException("Dietary preference must be specified");
+
         var caloricGoal = request.SpecificCaloricGoal ?? userPreferences?.CaloricGoal;
 
         if (!caloricGoal.HasValue)
@@ -90,29 +66,16 @@ public class MealPlanGeneratorService : IMealPlanGeneratorService, IService
         var recipes = await _recipeRepository.GetFilteredRecipesAsync(
             new RecipeFilterRequest
             {
-                DietaryPreference = dietaryPreference,
-                MaxCalories =
-                    caloricGoal.Value / 3
-                    + 200 // Allow some flexibility per meal
-                ,
+                DietaryPreference = dietaryPreference, // Use the dietary preference as a string
+                MaxCalories = caloricGoal.Value / 3 + 200, // Allow some flexibility per meal
             }
         );
 
         if (!recipes.Any())
         {
             throw new InvalidOperationException(
-                $"No recipes found matching dietary preference: {dietaryPreference ?? "None"} "
+                $"No recipes found matching dietary preference: {dietaryPreference} "
                     + $"and max calories: {caloricGoal.Value / 3 + 200}"
-            );
-        }
-
-        // Check if we have enough recipes for the plan
-        var minimumRecipesNeeded = 3; // One for each meal type
-        if (recipes.Count() < minimumRecipesNeeded)
-        {
-            throw new InvalidOperationException(
-                $"Not enough recipes available. Found {recipes.Count()} recipes, "
-                    + $"but need at least {minimumRecipesNeeded} for a daily plan"
             );
         }
 
@@ -174,9 +137,17 @@ public class MealPlanGeneratorService : IMealPlanGeneratorService, IService
         };
     }
 
+    public async Task<MealPlanResponse?> GetCurrentMealPlanAsync(Guid userId)
+    {
+        if (userId == Guid.Empty)
+            throw new ArgumentException("Invalid user ID");
+
+        return await _mealPlanRepository.GetCurrentMealPlanAsync(userId);
+    }
+
     private async Task<DailyMealPlan> GenerateDailyPlanAsync(
         List<RecipesGet> availableRecipes,
-        long targetCalories,
+        long targetDailyCalories,
         DateOnly date
     )
     {
@@ -185,34 +156,41 @@ public class MealPlanGeneratorService : IMealPlanGeneratorService, IService
         var dailyProtein = 0L;
         var dailyCarbs = 0L;
         var dailyFats = 0L;
-        var mealTypes = new[] { "Breakfast", "Lunch", "Dinner" };
-        var targetPerMeal = targetCalories / mealTypes.Length;
+        var mealTypes = new[] { "Breakfast", "Lunch", "Dinner", "Snack" };
 
-        foreach (var mealType in mealTypes)
+        // Continue adding meals until we reach or exceed the target daily calories
+        while (dailyCalories < targetDailyCalories)
         {
-            var meal = SelectAppropriateRecipe(
-                availableRecipes,
-                targetPerMeal,
-                meals.Select(m => m.RecipeId).ToList()
-            );
+            foreach (var mealType in mealTypes)
+            {
+                if (dailyCalories >= targetDailyCalories)
+                    break;
 
-            meals.Add(
-                new MealPlanRecipeInfo
-                {
-                    RecipeId = meal.Id,
-                    RecipeName = meal.Name,
-                    MealType = mealType,
-                    Calories = meal.Calories ?? 0,
-                    Protein = meal.Protein,
-                    Carbohydrates = meal.Carbohydrates,
-                    Fats = meal.Fats,
-                }
-            );
+                var remainingCalories = targetDailyCalories - dailyCalories;
+                var meal = SelectAppropriateRecipe(
+                    availableRecipes,
+                    remainingCalories,
+                    meals.Select(m => m.RecipeId).ToList()
+                );
 
-            dailyCalories += meal.Calories ?? 0;
-            dailyProtein += meal.Protein ?? 0;
-            dailyCarbs += meal.Carbohydrates ?? 0;
-            dailyFats += meal.Fats ?? 0;
+                meals.Add(
+                    new MealPlanRecipeInfo
+                    {
+                        RecipeId = meal.Id,
+                        RecipeName = meal.Name,
+                        MealType = mealType,
+                        Calories = meal.Calories ?? 0,
+                        Protein = meal.Protein,
+                        Carbohydrates = meal.Carbohydrates,
+                        Fats = meal.Fats,
+                    }
+                );
+
+                dailyCalories += meal.Calories ?? 0;
+                dailyProtein += meal.Protein ?? 0;
+                dailyCarbs += meal.Carbohydrates ?? 0;
+                dailyFats += meal.Fats ?? 0;
+            }
         }
 
         return new DailyMealPlan
@@ -234,7 +212,6 @@ public class MealPlanGeneratorService : IMealPlanGeneratorService, IService
         int attempt = 0
     )
     {
-        // Validate inputs
         if (recipes == null || !recipes.Any())
             throw new ArgumentException("Recipe list cannot be null or empty");
 
@@ -244,39 +221,39 @@ public class MealPlanGeneratorService : IMealPlanGeneratorService, IService
         if (excludeRecipeIds == null)
             throw new ArgumentException("Exclude recipe IDs list cannot be null");
 
-        if (attempt < 0 || attempt > MaxRetries)
-            throw new ArgumentException($"Attempt must be between 0 and {MaxRetries}");
-
-        // First check if we have any recipes at all after excluding used ones
+        // Get available recipes excluding already used ones
         var availableRecipes = recipes.Where(r => !excludeRecipeIds.Contains(r.Id)).ToList();
         if (!availableRecipes.Any())
         {
-            throw new InvalidOperationException(
-                "Not enough unique recipes available for the meal plan"
-            );
+            availableRecipes = recipes.ToList(); // Reset if no unique recipes left
         }
 
-        if (attempt >= MaxRetries)
-        {
-            // If we've tried too many times, just return the recipe closest to target calories
-            return availableRecipes
-                .OrderBy(r => Math.Abs((r.Calories ?? 0) - targetCalories))
-                .First();
-        }
+        // Start with a small tolerance and increase it with each attempt
+        var tolerance = Math.Min(100 * (attempt + 1), 300);
 
-        var tolerance = Math.Min(200 * (attempt + 1), 500); // Increase tolerance with each retry
+        // Try to find recipes within the current tolerance
         var suitableRecipes = availableRecipes
             .Where(r =>
                 r.Calories.HasValue && Math.Abs(r.Calories.Value - targetCalories) <= tolerance
             )
             .ToList();
 
-        if (!suitableRecipes.Any())
+        if (suitableRecipes.Any())
+        {
+            // If we found suitable recipes, pick the one closest to target calories
+            return suitableRecipes
+                .OrderBy(r => Math.Abs((r.Calories ?? 0) - targetCalories))
+                .First();
+        }
+
+        // If no suitable recipes found and we haven't reached max retries, try again with larger tolerance
+        if (attempt < MaxRetries)
         {
             return SelectAppropriateRecipe(recipes, targetCalories, excludeRecipeIds, attempt + 1);
         }
 
-        return suitableRecipes[new Random().Next(suitableRecipes.Count)];
+        // If all else fails, pick the closest recipe regardless of tolerance
+        return availableRecipes.OrderBy(r => Math.Abs((r.Calories ?? 0) - targetCalories)).First();
     }
 
     public async Task<MealPlanResponse?> GetMealPlanByIdAsync(Guid mealPlanId)
