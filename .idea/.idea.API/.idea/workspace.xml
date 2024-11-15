@@ -11,35 +11,19 @@
   <component name="ChangeListManager">
     <list default="true" id="572abe75-5193-4554-9216-30e78815ebd2" name="Changes" comment="changes to controllers made">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/config/applicationhost.config" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/config/applicationhost.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IRecipeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Controllers/RecipesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/RecipesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Requests/Recipes/RecipeFilterRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipeFilterRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Models/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Models/AppDbContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/API.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/API.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/API.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/API.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/ref/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/ref/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/refint/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/refint/API.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +69,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Launch Settings Profile.API: IIS Express.executor": "Run",
+    ".NET Launch Settings Profile.API: IIS Express.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
@@ -178,7 +162,7 @@
       <workItem from="1731011241870" duration="8732000" />
       <workItem from="1731168890229" duration="5929000" />
       <workItem from="1731420875915" duration="3598000" />
-      <workItem from="1731587947873" duration="5224000" />
+      <workItem from="1731587947873" duration="8712000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor project structure and update dependencies&#10;&#10;Refactored the project structure by moving models and creating separate repositories and services. Implemented new user repository and added Scrutor for dependency injection scanning. Updated several configuration files and project paths for improved organization and maintainability.">
       <option name="closed" value="true" />
