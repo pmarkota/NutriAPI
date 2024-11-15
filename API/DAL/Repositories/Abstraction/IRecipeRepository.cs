@@ -11,4 +11,5 @@ public interface IRecipeRepository
     Task<bool> UpdateRecipeAsync(RecipePutRequest recipe);
     Task<bool> DeleteRecipeAsync(Guid recipeId);
     Task<IEnumerable<RecipesGet>> GetFilteredRecipesAsync(RecipeFilterRequest filter);
+    Task<IEnumerable<RecipesGet>> SearchRecipesByNameAsync(string searchTerm);
 }

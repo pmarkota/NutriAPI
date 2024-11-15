@@ -58,4 +58,12 @@ public class RecipeService : IRecipeService, IService
 
         return await _recipeRepository.GetFilteredRecipesAsync(filter);
     }
+
+    public async Task<IEnumerable<RecipesGet>> SearchRecipesByNameAsync(string searchTerm)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+            throw new ArgumentException("Search term cannot be empty");
+
+        return await _recipeRepository.SearchRecipesByNameAsync(searchTerm);
+    }
 }

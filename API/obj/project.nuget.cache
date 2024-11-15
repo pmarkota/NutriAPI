@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BUUq1EZI39M=",
+  "dgSpecHash": "vsIxPadb3dQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pero\\Desktop\\pmarkota\\PROD_PROJECTS\\Nutri\\Back\\code\\NutriAPI\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\NutriAPI\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pero\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Pero\\.nuget\\packages\\google.apis\\1.67.0\\google.apis.1.67.0.nupkg.sha512",
@@ -155,7 +155,9 @@
     "C:\\Users\\Pero\\.nuget\\packages\\system.text.json\\7.0.3\\system.text.json.7.0.3.nupkg.sha512",
     "C:\\Users\\Pero\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
     "C:\\Users\\Pero\\.nuget\\packages\\system.threading.tasks.dataflow\\7.0.0\\system.threading.tasks.dataflow.7.0.0.nupkg.sha512",
-    "C:\\Users\\Pero\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
+    "C:\\Users\\Pero\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Pero\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.10\\microsoft.netcore.app.ref.8.0.10.nupkg.sha512",
+    "C:\\Users\\Pero\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.10\\microsoft.netcore.app.host.win-x64.8.0.10.nupkg.sha512"
   ],
   "logs": []
 }

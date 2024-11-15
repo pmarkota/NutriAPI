@@ -1,21 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pero\\Desktop\\pmarkota\\PROD_PROJECTS\\Nutri\\Back\\code\\NutriAPI\\API\\API.csproj": {}
+    "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\NutriAPI\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pero\\Desktop\\pmarkota\\PROD_PROJECTS\\Nutri\\Back\\code\\NutriAPI\\API\\API.csproj": {
+    "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\NutriAPI\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pero\\Desktop\\pmarkota\\PROD_PROJECTS\\Nutri\\Back\\code\\NutriAPI\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\NutriAPI\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Pero\\Desktop\\pmarkota\\PROD_PROJECTS\\Nutri\\Back\\code\\NutriAPI\\API\\API.csproj",
+        "projectPath": "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\NutriAPI\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Pero\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pero\\Desktop\\pmarkota\\PROD_PROJECTS\\Nutri\\Back\\code\\NutriAPI\\API\\obj\\",
+        "outputPath": "C:\\Users\\Pero\\Desktop\\petarmarkota\\Nutri\\BackEnd\\code\\NutriAPI\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\Pero\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -106,6 +105,16 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.10, 8.0.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.10, 8.0.10]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -114,7 +123,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

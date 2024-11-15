@@ -58,7 +58,7 @@ public class RecipeRepository : IRecipeRepository, IRepository
                 Difficulty = r.Difficulty,
                 PrepTime = r.PrepTime,
                 CookingTime = r.CookingTime,
-                TotalTime = r.TotalTime
+                TotalTime = r.TotalTime,
             })
             .FirstOrDefaultAsync();
     }
@@ -162,6 +162,16 @@ public class RecipeRepository : IRecipeRepository, IRepository
 
         System.Diagnostics.Debug.WriteLine($"Initial query count: {await query.CountAsync()}");
 
+        if (!string.IsNullOrEmpty(filter.NameSearchTerm))
+        {
+            query = query.Where(r =>
+                r.Name != null && EF.Functions.ILike(r.Name, $"%{filter.NameSearchTerm}%")
+            );
+            System.Diagnostics.Debug.WriteLine(
+                $"After name filter count: {await query.CountAsync()}"
+            );
+        }
+
         if (!string.IsNullOrEmpty(filter.DietaryPreference))
         {
             var normalizedPreference = filter.DietaryPreference.ToLower().Trim();
@@ -231,7 +241,7 @@ public class RecipeRepository : IRecipeRepository, IRepository
                 Difficulty = r.Difficulty,
                 PrepTime = r.PrepTime,
                 CookingTime = r.CookingTime,
-                TotalTime = r.TotalTime
+                TotalTime = r.TotalTime,
             })
             .ToListAsync();
 
@@ -252,6 +262,7 @@ public class RecipeRepository : IRecipeRepository, IRepository
                 .ToListAsync();
 
             System.Diagnostics.Debug.WriteLine("\n=== Filter Criteria ===");
+            System.Diagnostics.Debug.WriteLine($"NameSearchTerm: {filter.NameSearchTerm}");
             System.Diagnostics.Debug.WriteLine($"DietaryPreference: {filter.DietaryPreference}");
             System.Diagnostics.Debug.WriteLine($"MaxCalories: {filter.MaxCalories}");
             System.Diagnostics.Debug.WriteLine($"MinProtein: {filter.MinProtein}");
@@ -273,5 +284,32 @@ public class RecipeRepository : IRecipeRepository, IRepository
         }
 
         return results;
+    }
+
+    public async Task<IEnumerable<RecipesGet>> SearchRecipesByNameAsync(string searchTerm)
+    {
+        return await _db
+            .Recipes.Where(r => r.Name != null && EF.Functions.ILike(r.Name, $"%{searchTerm}%"))
+            .Select(r => new RecipesGet
+            {
+                Id = r.Id,
+                Name = r.Name,
+                Description = r.Description,
+                Ingredients = r.Ingredients,
+                Instructions = r.Instructions,
+                Calories = r.Calories,
+                Protein = r.Protein,
+                Carbohydrates = r.Carbohydrates,
+                Fats = r.Fats,
+                DietaryLabels = r.DietaryLabels,
+                CreatedBy = r.CreatedBy,
+                CreatedAt = r.CreatedAt,
+                Category = r.Category,
+                Difficulty = r.Difficulty,
+                PrepTime = r.PrepTime,
+                CookingTime = r.CookingTime,
+                TotalTime = r.TotalTime,
+            })
+            .ToListAsync();
     }
 }
