@@ -9,13 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="572abe75-5193-4554-9216-30e78815ebd2" name="Changes" comment="recipes changes">
+    <list default="true" id="572abe75-5193-4554-9216-30e78815ebd2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IMealPlanGeneratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IMealPlanGeneratorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Implementation/MealPlanGeneratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/MealPlanGeneratorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Controllers/MealPlansController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/MealPlansController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IMealPlanRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IMealPlanRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/MealPlanRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/MealPlanRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IShoppingListService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Abstraction/IShoppingListService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/BLL/Services/Implementation/ShoppingListService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/BLL/Services/Implementation/ShoppingListService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Controllers/ShoppingListsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/ShoppingListsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Abstraction/IRecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/DAL/Repositories/Implementation/RecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Requests/Recipes/RecipeReviewResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Requests/Recipes/RecipeReviewResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net8.0/API.pdb" afterDir="false" />
@@ -28,6 +29,7 @@
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/ref/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/ref/API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/obj/Debug/net8.0/refint/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net8.0/refint/API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/rider.project.model.nuget.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +58,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/294078ecfce6fdb942ecfee089f09717de7a6fcfe5efd9fdb6f4f93c0fb4813/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9eda537f15ea23cdfae523c19e87eb303a3ded88937ae7e55919387a43f70/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fb367341658aaedd7de424d4c9189db33c4387e268dcc4011918569442ab12/AsyncTaskMethodBuilderT.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Pero/Desktop/petarmarkota/Nutri/BackEnd/code/NutriAPI/API/DAL/Models/AppDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Pero/Desktop/petarmarkota/Nutri/BackEnd/code/NutriAPI/API/obj/Debug/net8.0/API.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -73,27 +73,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.API: IIS Express.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Pero",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.API: IIS Express.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pero&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.API: IIS Express">
     <configuration name="API: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/API/API.csproj" />
@@ -168,7 +168,8 @@
       <workItem from="1731011241870" duration="8732000" />
       <workItem from="1731168890229" duration="5929000" />
       <workItem from="1731420875915" duration="3598000" />
-      <workItem from="1731587947873" duration="14838000" />
+      <workItem from="1731587947873" duration="15110000" />
+      <workItem from="1731688722720" duration="2733000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor project structure and update dependencies&#10;&#10;Refactored the project structure by moving models and creating separate repositories and services. Implemented new user repository and added Scrutor for dependency injection scanning. Updated several configuration files and project paths for improved organization and maintainability.">
       <option name="closed" value="true" />
@@ -313,6 +314,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/API/BLL/Services/Implementation/RecipeService.cs</url>
+          <line>73</line>
+          <properties documentPath="C:\Users\Pero\Desktop\petarmarkota\Nutri\BackEnd\code\NutriAPI\API\BLL\Services\Implementation\RecipeService.cs" containingFunctionPresentation="Method 'AddRecipeReviewAsync'">
+            <startOffsets>
+              <option value="2450" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2451" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -17,4 +17,5 @@ public interface IRecipeRepository
     Task<bool> UpdateRecipeReviewAsync(Guid reviewId, RecipeReviewRequest review);
     Task<bool> DeleteRecipeReviewAsync(Guid reviewId);
     Task<RecipeReview?> GetRecipeReviewByIdAsync(Guid reviewId);
+    Task<IEnumerable<Recipe>> GetRecipesByIdsAsync(IEnumerable<Guid> recipeIds);
 }

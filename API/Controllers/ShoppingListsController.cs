@@ -42,6 +42,32 @@ public class ShoppingListsController : ControllerBase
         }
     }
 
+    [HttpPost("generate-from-favorites")]
+    public async Task<ActionResult<ShoppingListResponse>> GenerateFromFavorites(
+        [FromBody] GenerateShoppingListFromFavoritesRequest request
+    )
+    {
+        try
+        {
+            var shoppingList = await _shoppingListService.GenerateFromFavoritesAsync(
+                request.UserId
+            );
+            return Ok(shoppingList);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Forbid();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<ShoppingListResponse>> GetShoppingList(Guid id)
     {

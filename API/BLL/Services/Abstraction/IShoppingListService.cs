@@ -8,4 +8,5 @@ public interface IShoppingListService : IService
     Task<ShoppingListResponse?> GetByIdAsync(Guid id);
     Task<IEnumerable<ShoppingListResponse>> GetUserShoppingListsAsync(Guid userId);
     Task<bool> ToggleItemCheckAsync(Guid itemId, bool isChecked);
+    Task<ShoppingListResponse> GenerateFromFavoritesAsync(Guid userId);
 }
