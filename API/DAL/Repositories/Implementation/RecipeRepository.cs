@@ -160,69 +160,32 @@ public class RecipeRepository : IRecipeRepository, IRepository
     {
         var query = _db.Recipes.AsQueryable();
 
-        System.Diagnostics.Debug.WriteLine($"Initial query count: {await query.CountAsync()}");
-
         if (!string.IsNullOrEmpty(filter.NameSearchTerm))
         {
-            query = query.Where(r =>
-                r.Name != null && EF.Functions.ILike(r.Name, $"%{filter.NameSearchTerm}%")
-            );
-            System.Diagnostics.Debug.WriteLine(
-                $"After name filter count: {await query.CountAsync()}"
-            );
-        }
-
-        if (!string.IsNullOrEmpty(filter.DietaryPreference))
-        {
-            var normalizedPreference = filter.DietaryPreference.ToLower().Trim();
-
-            if (normalizedPreference != "all" && normalizedPreference != "any")
-            {
-                query = query.Where(r =>
-                    r.DietaryLabels != null
-                    && EF.Functions.ILike(r.DietaryLabels.ToLower(), $"%{normalizedPreference}%")
-                );
-            }
-            System.Diagnostics.Debug.WriteLine(
-                $"After dietary filter count: {await query.CountAsync()}"
-            );
+            query = query.Where(r => r.Name.Contains(filter.NameSearchTerm));
         }
 
         if (filter.MaxCalories.HasValue)
         {
-            query = query.Where(r => r.Calories.HasValue && r.Calories <= filter.MaxCalories);
-            System.Diagnostics.Debug.WriteLine(
-                $"After calories filter count: {await query.CountAsync()}"
-            );
+            query = query.Where(r => r.Calories <= filter.MaxCalories);
         }
 
         if (filter.MinProtein.HasValue)
         {
-            query = query.Where(r => r.Protein.HasValue && r.Protein >= filter.MinProtein);
-            System.Diagnostics.Debug.WriteLine(
-                $"After protein filter count: {await query.CountAsync()}"
-            );
+            query = query.Where(r => r.Protein >= filter.MinProtein);
         }
 
         if (filter.MaxCarbohydrates.HasValue)
         {
-            query = query.Where(r =>
-                r.Carbohydrates.HasValue && r.Carbohydrates <= filter.MaxCarbohydrates
-            );
-            System.Diagnostics.Debug.WriteLine(
-                $"After carbs filter count: {await query.CountAsync()}"
-            );
+            query = query.Where(r => r.Carbohydrates <= filter.MaxCarbohydrates);
         }
 
         if (filter.MaxFats.HasValue)
         {
-            query = query.Where(r => r.Fats.HasValue && r.Fats <= filter.MaxFats);
-            System.Diagnostics.Debug.WriteLine(
-                $"After fats filter count: {await query.CountAsync()}"
-            );
+            query = query.Where(r => r.Fats <= filter.MaxFats);
         }
 
-        var results = await query
+        return await query
             .Select(r => new RecipesGet
             {
                 Id = r.Id,
@@ -244,46 +207,6 @@ public class RecipeRepository : IRecipeRepository, IRepository
                 TotalTime = r.TotalTime,
             })
             .ToListAsync();
-
-        // Debug logging for all recipes if no results found
-        if (!results.Any())
-        {
-            var allRecipes = await _db
-                .Recipes.Select(r => new
-                {
-                    r.Id,
-                    r.Name,
-                    r.DietaryLabels,
-                    r.Calories,
-                    r.Protein,
-                    r.Carbohydrates,
-                    r.Fats,
-                })
-                .ToListAsync();
-
-            System.Diagnostics.Debug.WriteLine("\n=== Filter Criteria ===");
-            System.Diagnostics.Debug.WriteLine($"NameSearchTerm: {filter.NameSearchTerm}");
-            System.Diagnostics.Debug.WriteLine($"DietaryPreference: {filter.DietaryPreference}");
-            System.Diagnostics.Debug.WriteLine($"MaxCalories: {filter.MaxCalories}");
-            System.Diagnostics.Debug.WriteLine($"MinProtein: {filter.MinProtein}");
-            System.Diagnostics.Debug.WriteLine($"MaxCarbohydrates: {filter.MaxCarbohydrates}");
-            System.Diagnostics.Debug.WriteLine($"MaxFats: {filter.MaxFats}");
-
-            System.Diagnostics.Debug.WriteLine("\n=== Available Recipes ===");
-            foreach (var recipe in allRecipes)
-            {
-                System.Diagnostics.Debug.WriteLine(
-                    $"Recipe: {recipe.Name} (ID: {recipe.Id})\n"
-                        + $"Labels: {recipe.DietaryLabels}\n"
-                        + $"Calories: {recipe.Calories}, "
-                        + $"Protein: {recipe.Protein}, "
-                        + $"Carbs: {recipe.Carbohydrates}, "
-                        + $"Fats: {recipe.Fats}\n"
-                );
-            }
-        }
-
-        return results;
     }
 
     public async Task<IEnumerable<RecipesGet>> SearchRecipesByNameAsync(string searchTerm)
@@ -311,5 +234,76 @@ public class RecipeRepository : IRecipeRepository, IRepository
                 TotalTime = r.TotalTime,
             })
             .ToListAsync();
+    }
+
+    public async Task<RecipeReviewResponse> AddRecipeReviewAsync(RecipeReview review)
+    {
+        await _db.RecipeReviews.AddAsync(review);
+        await _db.SaveChangesAsync();
+
+        return new RecipeReviewResponse
+        {
+            Id = review.Id,
+            RecipeId = review.RecipeId,
+            UserId = review.UserId,
+            Rating = review.Rating,
+            Comment = review.Comment,
+            CreatedAt = review.CreatedAt,
+            UpdatedAt = review.UpdatedAt,
+        };
+    }
+
+    public async Task<IEnumerable<RecipeReviewResponse>> GetRecipeReviewsAsync(Guid recipeId)
+    {
+        return await _db
+            .RecipeReviews.Include(r => r.User)
+            .Where(r => r.RecipeId == recipeId)
+            .Select(r => new RecipeReviewResponse
+            {
+                Id = r.Id,
+                RecipeId = r.RecipeId,
+                UserId = r.UserId,
+                Rating = r.Rating,
+                Comment = r.Comment,
+                CreatedAt = r.CreatedAt,
+                UpdatedAt = r.UpdatedAt,
+                UserName = r.User.Username,
+            })
+            .ToListAsync();
+    }
+
+    public async Task<bool> UpdateRecipeReviewAsync(Guid reviewId, RecipeReviewRequest review)
+    {
+        var existingReview = await _db.RecipeReviews.FindAsync(reviewId);
+        if (existingReview == null)
+        {
+            return false;
+        }
+
+        existingReview.Rating = review.Rating;
+        existingReview.Comment = review.Comment;
+        existingReview.UpdatedAt = DateTime.UtcNow;
+
+        _db.RecipeReviews.Update(existingReview);
+        await _db.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> DeleteRecipeReviewAsync(Guid reviewId)
+    {
+        var reviewToDelete = await _db.RecipeReviews.FindAsync(reviewId);
+        if (reviewToDelete == null)
+        {
+            return false;
+        }
+
+        _db.RecipeReviews.Remove(reviewToDelete);
+        await _db.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<RecipeReview?> GetRecipeReviewByIdAsync(Guid reviewId)
+    {
+        return await _db.RecipeReviews.FindAsync(reviewId);
     }
 }

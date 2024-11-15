@@ -66,4 +66,37 @@ public class RecipeService : IRecipeService, IService
 
         return await _recipeRepository.SearchRecipesByNameAsync(searchTerm);
     }
+
+    public async Task<RecipeReviewResponse> AddRecipeReviewAsync(
+        Guid recipeId,
+        RecipeReviewRequest review
+    )
+    {
+        var recipeReview = new RecipeReview
+        {
+            RecipeId = recipeId,
+            UserId = review.UserId,
+            Rating = review.Rating,
+            Comment = review.Comment,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow,
+        };
+
+        return await _recipeRepository.AddRecipeReviewAsync(recipeReview);
+    }
+
+    public async Task<IEnumerable<RecipeReviewResponse>> GetRecipeReviewsAsync(Guid recipeId)
+    {
+        return await _recipeRepository.GetRecipeReviewsAsync(recipeId);
+    }
+
+    public async Task<bool> UpdateRecipeReviewAsync(Guid reviewId, RecipeReviewRequest review)
+    {
+        return await _recipeRepository.UpdateRecipeReviewAsync(reviewId, review);
+    }
+
+    public async Task<bool> DeleteRecipeReviewAsync(Guid reviewId)
+    {
+        return await _recipeRepository.DeleteRecipeReviewAsync(reviewId);
+    }
 }

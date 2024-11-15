@@ -44,7 +44,7 @@ public partial class Recipe
 
     [Column("created_at")]
     public DateTime CreatedAt { get; set; }
-    
+
     [Column("category")]
     public string? Category { get; set; }
 
@@ -61,10 +61,20 @@ public partial class Recipe
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public int? TotalTime { get; set; }
 
+    [Column("average_rating", TypeName = "numeric(3,2)")]
+    public decimal? AverageRating { get; set; }
+
+    [Column("total_reviews")]
+    public int? TotalReviews { get; set; }
+
     [ForeignKey("CreatedBy")]
     [InverseProperty("Recipes")]
     public virtual User? CreatedByNavigation { get; set; }
 
     [InverseProperty("Recipe")]
-    public virtual ICollection<MealPlanRecipe> MealPlanRecipes { get; set; } = new List<MealPlanRecipe>();
+    public virtual ICollection<MealPlanRecipe> MealPlanRecipes { get; set; } =
+        new List<MealPlanRecipe>();
+
+    [InverseProperty("Recipe")]
+    public virtual ICollection<RecipeReview> RecipeReviews { get; set; } = new List<RecipeReview>();
 }

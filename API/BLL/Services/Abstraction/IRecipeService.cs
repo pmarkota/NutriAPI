@@ -11,4 +11,8 @@ public interface IRecipeService
     Task<bool> DeleteRecipeAsync(Guid recipeId);
     Task<IEnumerable<RecipesGet>> GetFilteredRecipesAsync(RecipeFilterRequest filter);
     Task<IEnumerable<RecipesGet>> SearchRecipesByNameAsync(string searchTerm);
+    Task<RecipeReviewResponse> AddRecipeReviewAsync(Guid recipeId, RecipeReviewRequest review);
+    Task<IEnumerable<RecipeReviewResponse>> GetRecipeReviewsAsync(Guid recipeId);
+    Task<bool> UpdateRecipeReviewAsync(Guid reviewId, RecipeReviewRequest review);
+    Task<bool> DeleteRecipeReviewAsync(Guid reviewId);
 }

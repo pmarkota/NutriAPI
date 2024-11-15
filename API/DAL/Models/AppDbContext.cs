@@ -13,6 +13,7 @@ public partial class AppDbContext : DbContext
         : base(options) { }
 
     public virtual DbSet<MealPlan> MealPlans { get; set; }
+    public virtual DbSet<RecipeReview> RecipeReviews { get; set; }
 
     public virtual DbSet<MealPlanRecipe> MealPlanRecipes { get; set; }
 
@@ -116,7 +117,35 @@ public partial class AppDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("MealPlanRecipes_recipe_id_fkey");
         });
+        modelBuilder.Entity<RecipeReview>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("recipereviews_pkey");
 
+            entity.Property(e => e.Id).HasDefaultValueSql("gen_random_uuid()");
+
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("now()");
+
+            entity.Property(e => e.UpdatedAt).HasDefaultValueSql("now()");
+
+            entity.HasCheckConstraint(
+                "RecipeReviews_rating_check",
+                "(rating >= 1) AND (rating <= 5)"
+            );
+
+            entity
+                .HasOne(d => d.Recipe)
+                .WithMany(p => p.RecipeReviews)
+                .HasForeignKey(d => d.RecipeId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("recipereviews_recipe_id_fkey");
+
+            entity
+                .HasOne(d => d.User)
+                .WithMany(p => p.RecipeReviews)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("recipereviews_user_id_fkey");
+        });
         modelBuilder.Entity<Notification>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("Notifications_pkey");
